@@ -1,0 +1,1 @@
+BOARD_TYPE := "phycore-imx8x-1"
