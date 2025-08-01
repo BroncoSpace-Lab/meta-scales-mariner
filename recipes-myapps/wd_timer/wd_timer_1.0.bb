@@ -17,4 +17,5 @@ do_install() {
     install -m 0644 ${WORKDIR}/watchdogtimer.service ${D}${systemd_system_unitdir}
 }
 
-RDEPENDS_${PN} += "python3-core python3-libgpiod"
+RDEPENDS:${PN} += "python3-pip python3-libgpiod"
+
