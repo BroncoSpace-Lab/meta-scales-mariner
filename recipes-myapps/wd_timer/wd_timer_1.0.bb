@@ -1,7 +1,6 @@
 SUMMARY = "Test GPIO Ping Script"
 LICENSE = "MIT"
-SRC_URI = "file://watchdogtimer.py \
-SRC_URI = "file://watchdogtimer.service"
+SRC_URI = "file://watchdogtimer.py file://watchdogtimer.service"
 
 S = "${WORKDIR}"
 
