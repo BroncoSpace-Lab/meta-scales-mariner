@@ -1,10 +1,11 @@
 [Unit]
-Description=GPIO Watchdog Pulse Test
+Description=GPIO Watchdog Pinger
 After=multi-user.target
 
 [Service]
-ExecStart=/usr/bin/watchdogtimer
+ExecStart=/usr/bin/watchdogtimer.sh
 Restart=always
+User=root
 
 [Install]
 WantedBy=multi-user.target
