@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 GPIO=30
 GPIO_PATH="/sys/class/gpio/gpio${GPIO}"
