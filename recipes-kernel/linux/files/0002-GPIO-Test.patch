@@ -1,0 +1,24 @@
+From ed6bd20894772d47765014c8d181308cc1ff138a Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 5 Aug 2025 18:50:33 +0000
+Subject: [PATCH] GPIO-Test
+
+---
+ arch/arm64/boot/dts/freescale/imx8qxp-SCALES-Mariner1-A.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-SCALES-Mariner1-A.dts b/arch/arm64/boot/dts/freescale/imx8qxp-SCALES-Mariner1-A.dts
+index 7ab0a7c0643e..dbffb833849c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-SCALES-Mariner1-A.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-SCALES-Mariner1-A.dts
+@@ -406,6 +406,7 @@ IMX8QXP_SAI1_RXC_LSIO_GPIO0_IO30       0x06000021	 /* USBOTG1 Port Select */
+ 				IMX8QXP_MCLK_OUT0_ADMA_ACM_MCLK_OUT0   0x0600004c	 /* Audio Clock*/
+ 				IMX8QXP_SAI1_RXFS_LSIO_GPIO0_IO31      0x06000021	 /* CAN Fault */
+ 				IMX8QXP_SPI0_CS1_LSIO_GPIO1_IO07       0x06000021	 /* ETH1 OR Gate */
++				IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30 0x06000021 //test gpio
+ 			>;
+ 		};
+ 
+-- 
+2.44.1
+

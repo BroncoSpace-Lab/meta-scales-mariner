@@ -1,22 +1,15 @@
 #!/bin/sh
 
 GPIO=30
-GPIO_PATH="/sys/class/gpio/gpio${GPIO}"
-
-# Export GPIO if needed
-if [ ! -e "$GPIO_PATH" ]; then
-    echo "$GPIO" > /sys/class/gpio/export
-    sleep 0.5
-fi
-
-# Set direction to out
-echo "pet" > "$GPIO_PATH/direction"
+GPIO_CHIP=1
 
 # Ping loop — toggle every second
 while true; do
-    echo 1 > "$GPIO_PATH/value"
+    gpioset --chip gpiochip$GPIO_CHIP $GPIO=1
+    echo "Pet High"
     sleep 0.5
-    echo 0 > "$GPIO_PATH/value"
+    gpioset --chip gpiochip$GPIO_CHIP $GPIO=0
     sleep 0.5
+    echo "Pet Low"
 done
 
