@@ -16,7 +16,7 @@ index 9b199358933..8d62b38eae9 100644
  	"cntr_file=os_cntr_signed.bin\0" \
  	"boot_fdt=try\0" \
 -	"fdt_file=imx8qxp-phytec-pcm-942.dtb\0" \
-+	"fdt_file=imx8qxp-SCALES-Mariner1-A.dtb\0" \
++	"fdt_file=imx8qxp-SCALES-Mariner1-B.dtb\0" \
  	"bootenv=bootenv.txt\0" \
  	"mmc_load_bootenv=fatload mmc ${mmcdev}:${mmcpart} ${bootenv_addr} ${bootenv}\0" \
  	"ipaddr=192.168.3.11\0" \
