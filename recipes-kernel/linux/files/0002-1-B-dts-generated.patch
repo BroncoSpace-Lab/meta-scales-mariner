@@ -1,0 +1,17 @@
+From 6bbb11abbd963eb51ae373f582f58f2af629abe7 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Wed, 17 Sep 2025 21:38:02 +0000
+Subject: [PATCH] 1-B dts generated
+
+---
+ .../{imx8qxp-phytec-pcm-942.dts => imx8qxp-SCALES-Mariner1-B.dts} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename arch/arm64/boot/dts/freescale/{imx8qxp-phytec-pcm-942.dts => imx8qxp-SCALES-Mariner1-B.dts} (100%)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-phytec-pcm-942.dts b/arch/arm64/boot/dts/freescale/imx8qxp-SCALES-Mariner1-B.dts
+similarity index 100%
+rename from arch/arm64/boot/dts/freescale/imx8qxp-phytec-pcm-942.dts
+rename to arch/arm64/boot/dts/freescale/imx8qxp-SCALES-Mariner1-B.dts
+-- 
+2.44.1
+
