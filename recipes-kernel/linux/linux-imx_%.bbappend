@@ -1,2 +1,2 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI += "file://0001-Makefile-and-dts-added.patch"
+SRC_URI += "file://0001-makefile-and-dts-mariner-1b.patch"
