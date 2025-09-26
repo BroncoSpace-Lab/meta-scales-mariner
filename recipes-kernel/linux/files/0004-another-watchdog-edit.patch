@@ -1,0 +1,28 @@
+From e6d6c6e5ca6874a7beb86cf3e8edf1bda8e9990c Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Fri, 26 Sep 2025 19:36:40 +0000
+Subject: [PATCH] another watchdog edit
+
+---
+ arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index c16e357df80e..28c99b3524e3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -421,9 +421,11 @@ &lpqspi0B {
+ 		status = "okay";
+ 	};
+ */
++/*
+ &watchdog {
+ 	pinctrl-0 = <&pinctrl_wd0>;
+ };
++*/
+ 
+ 
+ &iomuxc {
+-- 
+2.44.1
+

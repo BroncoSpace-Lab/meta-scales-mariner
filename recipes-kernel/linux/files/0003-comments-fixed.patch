@@ -1,0 +1,38 @@
+From e965efa92efcf22dc82596566dc032aa024499d8 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Fri, 26 Sep 2025 19:23:20 +0000
+Subject: [PATCH] comments fixed
+
+---
+ .../arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 10db8fc329e2..c16e357df80e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -663,7 +663,7 @@ IMX8QXP_MCLK_IN1_ADMA_I2C3_SDA	0x8000060
+ 			>;
+ 		};
+ /*
+-		/* QSPI 0 B  */
++		/* QSPI 0 B  
+ 		pinctrl_qspi0b: qspi0bgrp {
+ 			fsl,pins = <
+ 				IMX8QXP_QSPI0B_DATA0_LSIO_QSPI0B_DATA0	0x60
+@@ -678,10 +678,10 @@ IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x60
+ 		};
+ */
+ 		/* WDOG0 */
+-		pinctrl_wd0: wd0grp {
++/*		pinctrl_wd0: wd0grp {
+ 			fsl,pins = <
+ 				IMX8QXP_SCU_GPIO0_01_SCU_WDOG0_WDOG_OUT 0x20000060
+ 			>;
+-		};
++		}; */
+ 	};
+ };
+-- 
+2.44.1
+
