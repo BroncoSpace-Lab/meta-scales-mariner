@@ -1,0 +1,127 @@
+From 000d706bd297d0fa52de440da7cb353d51250292 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Fri, 26 Sep 2025 22:40:48 +0000
+Subject: [PATCH] trying to fix error
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 83 +++++++++++++++----
+ 1 file changed, 68 insertions(+), 15 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index ff702c1fb5a6..8a5bceb8710c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -45,6 +45,61 @@ reg_pcieb: regulator-pcie {
+ 		};
+ 
+ 	};
++	
++	&i2c1 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	clock-frequency = <100000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_lpi2c1>;
++	status = "okay";
++
++	tps6598x: tps6598x@3f {
++		compatible = "ti,tps6598x";
++		reg = <0x3f>;
++	};
++
++	i2c_rtc: rtc@52 {
++		compatible = "microcrystal,rv3028";
++		reg = <0x52>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_i2crtc>;
++		interrupt-parent = <&lsio_gpio0>;
++		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
++		backup-switchover-mode = <0x1>;
++		status = "okay";
++	};
++
++	eeprom_cb: eeprom@51 {
++		compatible = "atmel,24c32";
++		pagesize = <32>;
++		reg = <0x51>;
++		status = "okay";
++	};
++
++	sgtl5000: codec@a {
++		#sound-dai-cells = <0>;
++		compatible = "fsl,sgtl5000";
++		reg = <0xa>;
++		assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
++				<&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
++				<&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_MST_BUS>,
++				<&mclkout0_lpcg 0>;
++		assigned-clock-rates = <786432000>, <49152000>, <12000000>, <12000000>;
++		clocks = <&mclkout0_lpcg 0>;
++		clock-names = "mclk";
++		VDDA-supply = <&reg_3p3v>;
++		VDDIO-supply = <&reg_3p3v>;
++		VDDD-supply = <&reg_1p8v>;
++	};
++
++	xio: gpio@20 {
++		compatible = "nxp,pcf8574a";
++		reg = <0x20>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++};
+ 
+ 
+ 	&lpuart0 {
+@@ -224,18 +279,6 @@ &i2c3 {
+ 	status = "okay";
+ 	};
+ 
+-
+-/*	&lpqspi0B {
+-		fsl,qspi-num-chipselects = <1>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_qspi0b>;
+-		status = "okay";
+-	};
+-*/
+-
+-
+-
+-
+ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
+@@ -243,9 +286,6 @@ &iomuxc {
+ 		/* For GPIO */
+ 		pinctrl_hog: hoggrp {
+ 			fsl,pins = <
+-				IMX8QXP_SAI1_RXC_LSIO_GPIO0_IO30       	0x06000021	 /* USBOTG1 Port Select */
+-				IMX8QXP_MCLK_OUT0_ADMA_ACM_MCLK_OUT0	0x0600004c	 /* Audio Clock*/
+-				IMX8QXP_SAI1_RXFS_LSIO_GPIO0_IO31      	0x06000021	 /* CAN Fault */
+ 				IMX8QXP_SPI0_CS1_LSIO_GPIO1_IO07       	0x06000021	 /* ETH1 OR Gate */
+ 			
+ 				/* GPIO1 */
+@@ -264,6 +304,19 @@ IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29	0x26000060
+ 				IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30	0x26000060
+ 
+ 			>;
++		
++		pinctrl_i2crtc: i2crtcgrp {
++			fsl,pins = <
++				IMX8QXP_SAI0_TXD_LSIO_GPIO0_IO25        0x06000021
++			>;
++		};
++
++		pinctrl_lpi2c1: lpi1cgrp {
++			fsl,pins = <
++				IMX8QXP_USB_SS3_TC1_ADMA_I2C1_SCL	0x06000020
++				IMX8QXP_USB_SS3_TC3_ADMA_I2C1_SDA	0x06000020
++			>;
++		};
+ 
+ 		pinctrl_fec2: fec2grp {
+ 			fsl,pins = <
+-- 
+2.44.1
+
