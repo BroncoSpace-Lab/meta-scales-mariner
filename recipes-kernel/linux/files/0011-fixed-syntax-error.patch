@@ -1,0 +1,25 @@
+From fe8e9605baba2ae71f224ff72c99807b1449f7f3 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 30 Sep 2025 20:35:39 +0000
+Subject: [PATCH] fixed syntax error
+
+---
+ arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 722d82e071a2..5ad3d76a1833 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -281,7 +281,7 @@ &i2c3 {
+ 
+ &iomuxc {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_hog> <&pinctl_gpio1>;
++	pinctrl-0 = <&pinctrl_hog> <&pinctrl_gpio1>;
+ 
+ 		/* For GPIO */
+ 		pinctrl_hog: hoggrp {
+-- 
+2.44.1
+

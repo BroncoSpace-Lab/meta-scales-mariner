@@ -1,0 +1,72 @@
+From 3a328cc55a0ebeda0425d5d3bdc9609b5f68b67c Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 30 Sep 2025 19:58:45 +0000
+Subject: [PATCH] edited device tree to include gpio1 group and iomux config
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 38 +++++++++++--------
+ 1 file changed, 22 insertions(+), 16 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 8a5bceb8710c..722d82e071a2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -281,27 +281,12 @@ &i2c3 {
+ 
+ &iomuxc {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_hog>;
++	pinctrl-0 = <&pinctrl_hog> <&pinctl_gpio1>;
+ 
+ 		/* For GPIO */
+ 		pinctrl_hog: hoggrp {
+ 			fsl,pins = <
+ 				IMX8QXP_SPI0_CS1_LSIO_GPIO1_IO07       	0x06000021	 /* ETH1 OR Gate */
+-			
+-				/* GPIO1 */
+-				IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09		   		0x26000060 /* Might want to change the last 3 bits to a different Drive select */
+-				IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10		   		0x26000060
+-				IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12				0x26000060
+-				IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13				0x26000060
+-				IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14				0x26000060
+-				IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17			0x26000060
+-				IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18			0x26000060
+-				IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19			0x26000060
+-				IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20			0x26000060
+-				IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25	0x26000060
+-				IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26	0x26000060
+-				IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29	0x26000060
+-				IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30	0x26000060
+ 
+ 			>;
+ 		
+@@ -404,5 +389,26 @@ IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x60
+ 
+ 	*/
+ 
++		//GPIO1
++		pinctrl_gpio1: gpio1grp {
++                        fsl,pins = <
++                                IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0x26000060 
++                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x26000060
++                                IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0x26000060
++                                IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x26000060
++                                IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0x26000060
++                                IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x26000060
++                                IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x26000060
++                                IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19             0x26000060
++                                IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x26000060
++                                IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0x26000060
++                                IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0x26000060
++                                IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0x26000060
++                                IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x26000060
++				
++                        >;
++                };
++
++
+ 	};
+ };
+-- 
+2.44.1
+
