@@ -1,0 +1,52 @@
+From fd292963b10a5db240214b7e9a149c98c35781e1 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Wed, 1 Oct 2025 20:06:23 +0000
+Subject: [PATCH] named gpios
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 441a0f4a199b..bb1dacac91c5 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -263,6 +263,35 @@ usb_port_select-hog {
+ 	&lsio_gpio1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_gpio1>;
++	
++	gpio-line-names =
++        /* 0-7 */
++        "", "", "", "", "", "", "", "",
++        /* 8 */
++        "",
++        /* 9-10: named */
++        "mariner_gpio09", "mariner_gpio10",
++        /* 11 */
++        "",
++        /* 12-14: named */
++        "mariner_gpio12", "mariner_gpio13", "mariner_gpio14",
++        /* 15-16 */
++        "", "",
++        /* 17: named */
++        "mariner_gpio17",
++        /* 18-20 (you muxed them too, but didn’t list as hogs — still usable) */
++        "mariner_gpio18", "mariner_gpio19", "mariner_gpio20",
++        /* 21-24 */
++        "", "", "", "",
++        /* 25-26: */
++        "mariner_gpio25", "mariner_gpio26",
++        /* 27-28 */
++        "", "",
++        /* 29-30: */
++        "mariner_gpio29", "mariner_gpio30",
++        /* 31 */
++        "";
++
+ 	};
+ 
+ 
+-- 
+2.44.1
+

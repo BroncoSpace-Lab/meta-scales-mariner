@@ -1,0 +1,36 @@
+From 3bcc0af50729bba53b4a2756776fab2524feb07c Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Wed, 1 Oct 2025 17:40:25 +0000
+Subject: [PATCH] corrected nesting
+
+---
+ .../boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts      | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index b71900cc9364..fbc66e6fb332 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -386,10 +386,9 @@ &iomuxc {
+ 		/* For GPIO */
+ 		pinctrl_hog: hoggrp {
+ 			fsl,pins = <
+-				IMX8QXP_SPI0_CS1_LSIO_GPIO1_IO07       	0x06000021	 /* ETH1 OR Gate */
+-
++				IMX8QXP_SPI0_CS1_LSIO_GPIO1_IO07       	0x06000021
+ 			>;
+-		
++		};	
+ 		pinctrl_i2crtc: i2crtcgrp {
+ 			fsl,pins = <
+ 				IMX8QXP_SAI0_TXD_LSIO_GPIO0_IO25        0x06000021
+@@ -509,6 +508,4 @@ IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x26000060
+                         >;
+                 };
+ 
+-
+-	};
+ };
+-- 
+2.44.1
+
