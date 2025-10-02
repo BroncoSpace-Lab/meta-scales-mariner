@@ -1,0 +1,25 @@
+From be6c8c484ebfaca7c44aab7431cb34ef33071103 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Thu, 2 Oct 2025 17:33:31 +0000
+Subject: [PATCH] trying new register val
+
+---
+ arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 28c03a0c8eea..a959f8dd5cd2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -427,7 +427,7 @@ IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x60
+ 		pinctrl_gpio1: gpio1grp {
+                         fsl,pins = <
+                                 IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0xA6070060 
+-                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0xA6070060
++                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x20000020
+                                 IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0xA6070060
+                                 IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0xA6070060
+                                 IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0xA6070060
+-- 
+2.44.1
+

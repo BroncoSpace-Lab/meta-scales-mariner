@@ -20,6 +20,7 @@ SRC_URI += "file://0018-named-gpios.patch"
 SRC_URI += "file://0019-changed-pinmux-register-values.patch"
 SRC_URI += "file://0020-trying-a-new-register-value.patch"
 SRC_URI += "file://0021-trying-new-pinmux-value.patch"
+SRC_URI += "file://0022-trying-new-register-val.patch"
 
 COMPATIBLE_MACHINE  = "^("
 COMPATIBLE_MACHINE .= "scales-mariner-1"
