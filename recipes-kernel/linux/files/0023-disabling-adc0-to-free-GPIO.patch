@@ -1,0 +1,26 @@
+From 8144e44789f9c6827a5e749c4870ff72d659f03f Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Fri, 3 Oct 2025 19:06:37 +0000
+Subject: [PATCH] disabling adc0 to free GPIO
+
+---
+ arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index a959f8dd5cd2..f7fc9bfd265e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -294,6 +294,9 @@ &lsio_gpio1 {
+ 
+ 	};
+ 
++	&adc0 {
++	    status = "disabled";
++	};	
+ 
+ 	/* New Added pins */
+ 	&i2c0 {
+-- 
+2.44.1
+
