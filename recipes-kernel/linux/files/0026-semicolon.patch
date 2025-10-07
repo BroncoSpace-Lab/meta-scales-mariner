@@ -1,0 +1,25 @@
+From 917e05d94d04bb834618a8a4c1c3b6469b534335 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 7 Oct 2025 18:43:12 +0000
+Subject: [PATCH] semicolon :/
+
+---
+ arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index ff8e0c6a95e0..f40d27c248f2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -316,7 +316,7 @@ &i2c3 {
+ 
+ 	&adc0 {
+ 	 status = "disabled";
+-	}
++	};
+ 
+ &iomuxc {
+ 	pinctrl-names = "default";
+-- 
+2.44.1
+
