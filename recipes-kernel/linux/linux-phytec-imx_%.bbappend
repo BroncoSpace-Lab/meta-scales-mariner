@@ -30,6 +30,7 @@ SRC_URI += "file://0028-minor-changes-trying-stuff.patch"
 SRC_URI += "file://0029-playing-with-mux-values.patch"
 SRC_URI += "file://0030-changed-iomux-to-pinctrl.patch"
 SRC_URI += "file://0031-added-iomux-back.patch"
+SRC_URI += "file://0032-removing-adc0.patch"
 
 COMPATIBLE_MACHINE  = "^("
 COMPATIBLE_MACHINE .= "scales-mariner-1"

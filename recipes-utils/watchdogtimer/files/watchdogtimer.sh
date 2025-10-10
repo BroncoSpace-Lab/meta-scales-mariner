@@ -1,15 +1,15 @@
 #!/bin/sh
 
-#GPIO=30
-#GPIO_CHIP=1
+GPIO=20
+GPIO_CHIP=2
 
-# Ping loop — toggle every second
-#while true; do
- #   gpioset --chip gpiochip$GPIO_CHIP $GPIO=1
+# Ping loop — 3.3v Square Wave, 1Hz, 50% Duty Cycle 
+while true; do
+    gpioset --chip gpiochip$GPIO_CHIP --hold-period 500ms --toggle=0 $GPIO=1
     echo "Pet High"
-    sleep 0.5
-   # gpioset --chip gpiochip$GPIO_CHIP $GPIO=0
-    sleep 0.5
+
+    gpioset --chip gpiochip$GPIO_CHIP --hold-period 500ms --toggle=0 $GPIO=0
     echo "Pet Low"
+
 done
 
