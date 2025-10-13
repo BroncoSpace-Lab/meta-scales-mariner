@@ -1,0 +1,31 @@
+From 47346e0c3e06c477cdd6a3607d97f272131d8663 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Mon, 13 Oct 2025 17:40:30 +0000
+Subject: [PATCH] added wrapper
+
+---
+ .../boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts     | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index bc16469b9a5a..c6b1ebf30d9e 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -433,10 +433,10 @@ IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x06000021 //Testing.
+                                 IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0x06000021 //Testing.
+                                 IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x06000021 //Testing. 
+                                 IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0x06000021 //Testing.
+-                                IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x26000020 //Works. Active High. 
+-                                IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x26000020 //Works. Active High.  
+-                                IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19             0x26000020 //Doesnt work.
+-                                IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x26000020 //Works. Active High.
++                                IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x06000021 //Works. Active High. 
++                                IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x06000021//Works. Active High.  
++                                IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19             0x06000021 //Doesnt work.
++                                IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x06000021 //Works. Active High.
+                                 IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0x06000021 //Testing
+                                 IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0x06000021 //Testing
+                                 IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0x06000021 //Testing
+-- 
+2.44.1
+

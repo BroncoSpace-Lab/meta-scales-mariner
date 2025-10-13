@@ -1,0 +1,45 @@
+From b9e3675e416216cdc1e3a818876ecbb362addf88 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Sat, 11 Oct 2025 07:18:06 +0000
+Subject: [PATCH] trying 0x06000021
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts   | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index dbb3904a5668..d4dfacb56af7 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -428,19 +428,19 @@ IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x60
+ 		//GPIO1
+ 		pinctrl_gpio1: gpio1grp {
+                         fsl,pins = <
+-                                IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0x26000020 //Doesnt work. Stays low
+-                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x26000020 //Doesnt work. Stays low
+-                                IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0x26000020 //Doesnt work. Stays low
+-                                IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x26000020 //Doesnt work. Stays low
+-                                IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0x26000020 //Doesnt work. Stays low
++                                IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0x06000021 //Testing.
++                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x06000021 //Testing.
++                                IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0x06000021 //Testing.
++                                IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x06000021 //Testing. 
++                                IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0x06000021 //Testing.
+                                 IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x26000020 //Works. Active High. 
+                                 IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x26000020 //Works. Active High.  
+                                 IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19             0x26000020 //Doesnt work.
+                                 IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x26000020 //Works. Active High.
+-                                IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0x26000020 //Doesnt work. Stays high
+-                                IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0x26000020 //Doesnt work. Stays high
+-                                IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0x26000020 //Doesnt work. Stays high
+-                                IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x26000020 //Doesnt work. Stays high
++                                IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0x06000021 //Testing
++                                IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0x06000021 //Testing
++                                IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0x06000021 //Testing
++                                IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x06000021 //Testing
+ 				
+                         >;
+                 };
+-- 
+2.44.1
+
