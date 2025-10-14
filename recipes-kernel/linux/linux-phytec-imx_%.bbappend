@@ -34,7 +34,8 @@ SRC_URI += "file://0032-removing-adc0.patch"
 SRC_URI += "file://0033-trying-0x06000021.patch"
 SRC_URI += "file://0034-added-wrapper.patch"
 SRC_URI += "file://0035-fixed-group-wrapper.patch"
-
+SRC_URI += "file://0036-changed-to-active-low-GPIOs-fixed-qspib.patch"
+SRC_URI += "file://0037-rolling-back-qspi.patch"
 
 COMPATIBLE_MACHINE  = "^("
 COMPATIBLE_MACHINE .= "scales-mariner-1"

@@ -1,0 +1,49 @@
+From 26d0f0ae217c7387800bcb833f1ec73a7532814e Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 14 Oct 2025 05:33:09 +0000
+Subject: [PATCH] rolling back qspi
+
+---
+ .../boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts     | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 49d9911cd6a3..b2e1a4376cfe 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -313,12 +313,12 @@ &i2c3 {
+ 	status = "okay";
+ 	};
+ 	
+-	&qspi0 {
++/*	&qspi0 {
+         pinctrl-names = "default";
+         pinctrl-0 = <&pinctrl_qspi0>;
+         status = "okay";
+ 	};
+-
++*/
+ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
+@@ -415,7 +415,7 @@ IMX8QXP_MCLK_IN1_ADMA_I2C3_SDA	0x06000020
+ 		};
+ 
+ 		// QSPI 0 B  
+-		pinctrl_qspi0: qspi0grp {
++/*		pinctrl_qspi0: qspi0grp {
+ 			fsl,pins = <
+ 				IMX8QXP_QSPI0B_DATA0_LSIO_QSPI0B_DATA0	0x06000021
+ 				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA1	0x06000021
+@@ -428,7 +428,7 @@ IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x06000021
+ 			>;
+ 		};
+ 
+-	
++*/	
+ 
+ 		//GPIO1
+ 		pinctrl_gpio1: gpio1grp {
+-- 
+2.44.1
+
