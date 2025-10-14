@@ -2,7 +2,7 @@
 set -eu
 
 GPIO_CHIP=${GPIO_CHIP:-2}
-GPIO=${GPIO:-18}
+GPIO=${GPIO:-9}
 CHIP="gpiochip$GPIO_CHIP"
 
 PIDFILE="/tmp/gpioset_${GPIO_CHIP}_${GPIO}.pid"
