@@ -39,6 +39,7 @@ SRC_URI += "file://0037-rolling-back-qspi.patch"
 SRC_URI += "file://0038-limited-SD-card-speed.patch"
 SRC_URI += "file://0039-added-uart-2-functionality.patch"
 SRC_URI += "file://0040-changed-QSPI-to-GPIO.patch"
+SRC_URI += "file://0041-created-names-for-gpio3.patch"
 
 COMPATIBLE_MACHINE  = "^("
 COMPATIBLE_MACHINE .= "scales-mariner-1"

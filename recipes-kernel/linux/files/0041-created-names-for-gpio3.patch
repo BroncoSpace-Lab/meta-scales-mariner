@@ -1,0 +1,56 @@
+From ee945ae7d6e12557488f7ddb4e38c57a1f8fbd9b Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Wed, 15 Oct 2025 07:59:11 +0000
+Subject: [PATCH] created names for gpio3
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 33 ++++---------------
+ 1 file changed, 6 insertions(+), 27 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 04038351cf0d..c96d74362a1d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -302,33 +302,12 @@ &lsio_gpio3 {
+         pinctrl-0 = <&pinctrl_gpio3>;
+ 
+         gpio-line-names =
+-        /* 0-7 */
+-        "", "", "", "", "", "", "", "",
+-        /* 8 */
+-        "",
+-        /* 9-10: named */
+-        "mariner_gpio09", "mariner_gpio10",
+-        /* 11 */
+-        "",
+-        /* 12-14: named */
+-        "mariner_gpio12", "mariner_gpio13", "mariner_gpio14",
+-        /* 15-16 */
+-        "", "",
+-        /* 17: named */
+-        "mariner_gpio17",
+-        /* 18-20 (you muxed them too, but didn’t list as hogs — still usable) */
+-        "mariner_gpio18", "mariner_gpio19", "mariner_gpio20",
+-        /* 21-24 */
+-        "", "", "", "",
+-        /* 25-26: */
+-        "mariner_gpio25", "mariner_gpio26",
+-        /* 27-28 */
+-        "", "",
+-        /* 29-30: */
+-        "mariner_gpio29", "mariner_gpio30",
+-        /* 31 */
+-        "";
+-
++        /* 0-16 */
++        "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
++        /* 17-24 */
++        "mariner_gpio17", "mariner_gpio18", "mariner_gpio19", "mariner_gpio20", "mariner_gpio21", "mariner_gpio22", "mariner_gpio23", "mariner_gpio24",
++        /* 25-31 */
++        "", "", "", "", "", "", "";
+         };
+ 
+ 
+-- 
+2.44.1
+
