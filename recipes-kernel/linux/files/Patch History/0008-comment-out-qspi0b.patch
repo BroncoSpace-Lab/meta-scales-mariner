@@ -1,0 +1,48 @@
+From d1992b9f0cd2b06f229d0b2d755955fcfe33d6b7 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Fri, 26 Sep 2025 22:23:19 +0000
+Subject: [PATCH] comment out qspi0b
+
+---
+ .../boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts      | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 329728551b6c..ff702c1fb5a6 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -225,12 +225,13 @@ &i2c3 {
+ 	};
+ 
+ 
+-	&lpqspi0B {
++/*	&lpqspi0B {
+ 		fsl,qspi-num-chipselects = <1>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_qspi0b>;
+ 		status = "okay";
+ 	};
++*/
+ 
+ 
+ 
+@@ -334,7 +335,7 @@ IMX8QXP_MCLK_IN1_ADMA_I2C3_SDA	0x8000060
+ 			>;
+ 		};
+ 
+-		// QSPI 0 B  
++	/*	// QSPI 0 B  
+ 		pinctrl_qspi0b: qspi0bgrp {
+ 			fsl,pins = <
+ 				IMX8QXP_QSPI0B_DATA0_LSIO_QSPI0B_DATA0	0x60
+@@ -348,5 +349,7 @@ IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x60
+ 			>;
+ 		};
+ 
++	*/
++
+ 	};
+ };
+-- 
+2.44.1
+

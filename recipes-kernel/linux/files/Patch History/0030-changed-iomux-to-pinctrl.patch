@@ -1,0 +1,58 @@
+From ff7b7d5e4744ff0ad7e95609b6d4e598735f5d50 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 7 Oct 2025 22:43:45 +0000
+Subject: [PATCH] changed iomux to pinctrl
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 28 +++++++++----------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 692922236f3b..2a9161bf3e3c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -313,7 +313,7 @@ &i2c3 {
+ 	status = "okay";
+ 	};
+ 
+-&iomuxc {
++&pinctrl {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
+ 
+@@ -425,19 +425,19 @@ IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x60
+ 		//GPIO1
+ 		pinctrl_gpio1: gpio1grp {
+                         fsl,pins = <
+-                                IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0xE6000020 //Mux Control 1, Pad Control 1
+-                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x66000020 //Mux Control 0, Pad Control 1
+-                                IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0xA6000020 //Mux Control 1, Pad Control 0
+-                                IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x26000020 //Mux Control 0, Pad Control 0 
+-                                IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0x26000020
+-                                IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x26000020 // Modifying until it works. Active High. 
+-                                IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x26000020  
+-                                IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19             0x26000020 
+-                                IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x26000020
+-                                IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0x26000020
+-                                IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0x26000020
+-                                IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0x26000020
+-                                IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x26000020
++                                IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0x26000020 //Doesnt work. Stays low
++                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x26000020 //Doesnt work. Stays low
++                                IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0x26000020 //Doesnt work. Stays low
++                                IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x26000020 //Doesnt work. Stays low
++                                IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0x26000020 //Doesnt work. Stays low
++                                IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x26000020 //Works. Active High. 
++                                IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x26000020 //Works. Active High.  
++                                IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19             0x26000020 //Doesnt work.
++                                IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x26000020 //Works. Active High.
++                                IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0x26000020 //Doesnt work. Stays high
++                                IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0x26000020 //Doesnt work. Stays high
++                                IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0x26000020 //Doesnt work. Stays high
++                                IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x26000020 //Doesnt work. Stays high
+ 				
+                         >;
+                 };
+-- 
+2.44.1
+

@@ -1,0 +1,129 @@
+From 1fe6dc24cb7bf001215c740a2fb12ff7b16ba07e Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 7 Oct 2025 20:11:53 +0000
+Subject: [PATCH] minor changes trying stuff
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 40 +++++++++----------
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |  2 +-
+ 2 files changed, 21 insertions(+), 21 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index cbf245dbf56d..a94a7eac4524 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -109,67 +109,67 @@ &lpuart0 {
+ 	};
+ 
+ 	&dc0_prg1 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_prg2 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_prg3 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_prg4 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_prg5 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_prg6 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_prg7 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_prg8 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_prg9 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_dpr1_channel1 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_dpr1_channel2 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_dpr1_channel3 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_dpr2_channel1 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_dpr2_channel2 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dc0_dpr2_channel3 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&dpu1 {
+-	status = "okay";
++	status = "disabled";
+ 	};
+ 
+ 	&usbphy1 {
+@@ -434,10 +434,10 @@ IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x26000020 // Modifying until it
+                                 IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x26000020  
+                                 IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19             0x26000020 
+                                 IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x26000020
+-                                IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0xA6070060
+-                                IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0xA6070060
+-                                IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0xA6070060
+-                                IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0xA6070060
++                                IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0x26000020
++                                IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0x26000020
++                                IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0x26000020
++                                IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x26000020
+ 				
+                         >;
+                 };
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+index 38a5f9d96b31..076110a9b0b9 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+@@ -251,7 +251,7 @@ secvio: secvio {
+ 
+ 		watchdog {
+ 			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
+-			timeout-sec = <60>;
++			timeout-sec = <5>;
+ 		};
+ 
+ 		tsens: thermal-sensor {
+-- 
+2.44.1
+

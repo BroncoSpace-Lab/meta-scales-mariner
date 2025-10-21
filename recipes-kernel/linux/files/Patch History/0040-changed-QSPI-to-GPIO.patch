@@ -1,0 +1,120 @@
+From 36600a03acf8c8716aa2d1ee295e57be70b1af1d Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Wed, 15 Oct 2025 01:21:07 +0000
+Subject: [PATCH] changed QSPI to GPIO
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 77 +++++++++++++------
+ 1 file changed, 54 insertions(+), 23 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 249a85ce2e64..04038351cf0d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -296,6 +296,42 @@ &lsio_gpio1 {
+         "";
+ 
+ 	};	
++	
++	&lsio_gpio3 {
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_gpio3>;
++
++        gpio-line-names =
++        /* 0-7 */
++        "", "", "", "", "", "", "", "",
++        /* 8 */
++        "",
++        /* 9-10: named */
++        "mariner_gpio09", "mariner_gpio10",
++        /* 11 */
++        "",
++        /* 12-14: named */
++        "mariner_gpio12", "mariner_gpio13", "mariner_gpio14",
++        /* 15-16 */
++        "", "",
++        /* 17: named */
++        "mariner_gpio17",
++        /* 18-20 (you muxed them too, but didn’t list as hogs — still usable) */
++        "mariner_gpio18", "mariner_gpio19", "mariner_gpio20",
++        /* 21-24 */
++        "", "", "", "",
++        /* 25-26: */
++        "mariner_gpio25", "mariner_gpio26",
++        /* 27-28 */
++        "", "",
++        /* 29-30: */
++        "mariner_gpio29", "mariner_gpio30",
++        /* 31 */
++        "";
++
++        };
++
++
+ 
+ 	/* New Added pins */
+ 	&i2c0 {
+@@ -316,12 +352,6 @@ &i2c3 {
+ 	status = "okay";
+ 	};
+ 	
+-/*	&qspi0 {
+-        pinctrl-names = "default";
+-        pinctrl-0 = <&pinctrl_qspi0>;
+-        status = "okay";
+-	};
+-*/
+ 	&lpuart2 {
+         pinctrl-names = "default";
+         pinctrl-0 = <&pinctrl_lpuart2>;
+@@ -428,23 +458,7 @@ pinctrl_lpi2c3: lpi3cgrp {
+ 				IMX8QXP_SPI3_CS1_ADMA_I2C3_SCL	0x06000020
+ 				IMX8QXP_MCLK_IN1_ADMA_I2C3_SDA	0x06000020
+ 			>;
+-		};
+-
+-		// QSPI 0 B  
+-/*		pinctrl_qspi0: qspi0grp {
+-			fsl,pins = <
+-				IMX8QXP_QSPI0B_DATA0_LSIO_QSPI0B_DATA0	0x06000021
+-				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA1	0x06000021
+-				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA2	0x06000021
+-				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA3	0x06000021
+-				IMX8QXP_QSPI0B_DQS_LSIO_QSPI0B_DQS	0x06000021
+-				IMX8QXP_QSPI0B_SCLK_LSIO_QSPI0B_SCLK	0x06000021
+-				IMX8QXP_QSPI0B_SS0_B_LSIO_QSPI0B_SS0_B	0x06000021
+-				IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x06000021
+-			>;
+-		};
+-
+-*/	
++		};	
+ 
+ 		//GPIO1
+ 		pinctrl_gpio1: gpio1grp {
+@@ -465,5 +479,22 @@ IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x06000041
+ 				
+                         >;
+                 };
++		
++		//GPIO3
++                pinctrl_gpio3: gpio3grp {
++                        fsl,pins = <
++                                IMX8QXP_QSPI0B_DATA0_LSIO_GPIO3_IO18            0x06000041 //internal pull down. Active High
++                                IMX8QXP_QSPI0B_DATA1_LSIO_GPIO3_IO19            0x06000041
++                                IMX8QXP_QSPI0B_DATA2_LSIO_GPIO3_IO20            0x06000041
++                                IMX8QXP_QSPI0B_DATA3_LSIO_GPIO3_IO21            0x06000041
++                                IMX8QXP_QSPI0B_DQS_LSIO_GPIO3_IO22              0x06000041
++                                IMX8QXP_QSPI0B_SCLK_LSIO_GPIO3_IO17             0x06000041
++                                IMX8QXP_QSPI0B_SS0_B_LSIO_GPIO3_IO23            0x06000041
++                                IMX8QXP_QSPI0B_SS1_B_LSIO_GPIO3_IO24            0x06000041
++                                IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x06000041
++                                
++                        >;
++                };
++
+ 	};
+ };
+-- 
+2.44.1
+

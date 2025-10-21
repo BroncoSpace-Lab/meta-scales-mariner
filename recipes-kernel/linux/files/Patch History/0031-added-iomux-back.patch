@@ -1,0 +1,25 @@
+From aa7b01924525f7a35e1e7ec4119c0ba62ede65ae Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 7 Oct 2025 22:54:18 +0000
+Subject: [PATCH] added iomux back
+
+---
+ arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 2a9161bf3e3c..ebb025134ac0 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -313,7 +313,7 @@ &i2c3 {
+ 	status = "okay";
+ 	};
+ 
+-&pinctrl {
++&iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
+ 
+-- 
+2.44.1
+

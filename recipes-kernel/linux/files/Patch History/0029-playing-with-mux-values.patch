@@ -1,0 +1,31 @@
+From 50d8e54fc3117bdfbf144edcec07b077ceabf1ef Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 7 Oct 2025 20:56:05 +0000
+Subject: [PATCH] playing with mux values
+
+---
+ .../boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts     | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index a94a7eac4524..692922236f3b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -425,10 +425,10 @@ IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x60
+ 		//GPIO1
+ 		pinctrl_gpio1: gpio1grp {
+                         fsl,pins = <
+-                                IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0x26000020 
+-                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x26000020
+-                                IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0x26000020
+-                                IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x26000020
++                                IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0xE6000020 //Mux Control 1, Pad Control 1
++                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x66000020 //Mux Control 0, Pad Control 1
++                                IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0xA6000020 //Mux Control 1, Pad Control 0
++                                IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x26000020 //Mux Control 0, Pad Control 0 
+                                 IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0x26000020
+                                 IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x26000020 // Modifying until it works. Active High. 
+                                 IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x26000020  
+-- 
+2.44.1
+

@@ -1,0 +1,120 @@
+From e180a3cde90635734b36ac7f05ac922b51177791 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Wed, 1 Oct 2025 19:41:58 +0000
+Subject: [PATCH] remove hog syntax
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 95 -------------------
+ 1 file changed, 95 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 3ffbc5fb7279..441a0f4a199b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -263,103 +263,8 @@ usb_port_select-hog {
+ 	&lsio_gpio1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_gpio1>;
+-
+-	/*
+-	Removing the hogs and just exposing the pinmux to the node allows for control in runtime	
+-	gpio1-9-hog {
+-		gpio-hog;
+-		gpios = <9 GPIO_ACTIVE_HIGH>; /* <offset flags> */
+-		output-low;                   /* drives low at boot */
+-		line-name = "mariner GPIO1_IO09";
+-	};
+-
+-	gpio1-10-hog {
+-		gpio-hog;
+-		gpios = <10 GPIO_ACTIVE_HIGH>;
+-		output-low;
+-		line-name = "mariner GPIO1_IO10";
+-	};
+-
+-	gpio1-12-hog {
+-		gpio-hog;
+-		gpios = <12 GPIO_ACTIVE_HIGH>;
+-		output-low;
+-		line-name = "mariner GPIO1_IO12";
+-	};
+-
+-	gpio1-13-hog {
+-		gpio-hog;
+-		gpios = <13 GPIO_ACTIVE_HIGH>;
+-		output-low;
+-		line-name = "mariner GPIO1_IO13";
+ 	};
+ 
+-	gpio1-14-hog {
+-		gpio-hog;
+-		gpios = <14 GPIO_ACTIVE_HIGH>;
+-		output-low;
+-		line-name = "mariner GPIO1_IO14";
+-	};
+-
+-	gpio1-17-hog {
+-		gpio-hog;
+-		gpios = <17 GPIO_ACTIVE_HIGH>;
+-		output-low;
+-		line-name = "mariner GPIO1_IO17";
+-	};
+-
+-	gpio1-18-hog {
+-                gpio-hog;
+-                gpios = <18 GPIO_ACTIVE_HIGH>;
+-                output-low;
+-                line-name = "mariner GPIO1_IO18";
+-        };
+-
+-	gpio1-19-hog {
+-                gpio-hog;
+-                gpios = <19 GPIO_ACTIVE_HIGH>;
+-                output-low;
+-                line-name = "mariner GPIO1_IO19";
+-        };
+-
+-	gpio1-20-hog {
+-                gpio-hog;
+-                gpios = <20 GPIO_ACTIVE_HIGH>;
+-                output-low;
+-                line-name = "mariner GPIO1_IO20";
+-        };
+-
+-	gpio1-25-hog {
+-                gpio-hog;
+-                gpios = <25 GPIO_ACTIVE_HIGH>;
+-                output-low;
+-                line-name = "mariner GPIO1_IO25";
+-        };
+-
+-	gpio1-26-hog {
+-                gpio-hog;
+-                gpios = <26 GPIO_ACTIVE_HIGH>;
+-                output-low;
+-                line-name = "mariner GPIO1_IO26";
+-        };
+-
+-	gpio1-29-hog {
+-                gpio-hog;
+-                gpios = <29 GPIO_ACTIVE_HIGH>;
+-                output-low;
+-                line-name = "mariner GPIO1_IO29";
+-        };
+-
+-	gpio1-30-hog {
+-                gpio-hog;
+-                gpios = <30 GPIO_ACTIVE_HIGH>;
+-                output-low;
+-                line-name = "mariner GPIO1_IO30";
+-        };
+-
+-	*/ 
+-};
+-
+ 
+ 	/* New Added pins */
+ 	&i2c0 {
+-- 
+2.44.1
+

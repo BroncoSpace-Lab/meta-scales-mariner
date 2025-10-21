@@ -1,0 +1,269 @@
+From db57505d7313c34951bca8a0e65326b3052012b0 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Fri, 26 Sep 2025 19:01:21 +0000
+Subject: [PATCH] dts modified to reflect 1-b
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 167 ++++++++++++++----
+ 1 file changed, 134 insertions(+), 33 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 7ab0a7c0643e..10db8fc329e2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -352,14 +352,14 @@ &pcieb{
+ 	ext_osc = <1>;
+ 	status = "okay";
+ };
+-
+-&sai1 {
+-	#sound-dai-cells = <0>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_sai1>;
+-	status = "okay";
+-};
+-
++/*
++	&sai1 {
++		#sound-dai-cells = <0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_sai1>;
++		status = "okay";
++	};
++*/
+ &lpspi2 {
+ 	fsl,spi-num-chipselects = <1>;
+ 	pinctrl-names = "default";
+@@ -372,20 +372,20 @@ spidev2_0: spi2@0 {
+ 		spi-max-frequency = <10000000>;
+ 	};
+ };
++/*
++	&lpspi3 {
++		fsl,spi-num-chipselects = <1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_lpspi3>;
++		status = "okay";
+ 
+-&lpspi3 {
+-	fsl,spi-num-chipselects = <1>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_lpspi3>;
+-	status = "okay";
+-
+-	spidev3_0: spi3@0 {
+-		reg = <0>;
+-		compatible = "rohm,dh2228fv";
+-		spi-max-frequency = <10000000>;
++		spidev3_0: spi3@0 {
++			reg = <0>;
++			compatible = "rohm,dh2228fv";
++			spi-max-frequency = <10000000>;
++		};
+ 	};
+-};
+-
++*/
+ &lsio_gpio0{
+ 	usb_port_select-hog {
+ 		gpio-hog;
+@@ -395,19 +395,64 @@ usb_port_select-hog {
+ 	};
+ };
+ 
++/* New Added pins */
++&i2c0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	clock-frequency = <100000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_lpi2c0>;
++	status = "okay";
++};
++
++&i2c3 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	clock-frequency = <100000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_lpi2c3>;
++	status = "okay";
++};
++/*
++	&lpqspi0B {
++		fsl,qspi-num-chipselects = <1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_qspi0b>;
++		status = "okay";
++	};
++*/
++&watchdog {
++	pinctrl-0 = <&pinctrl_wd0>;
++};
++
++
+ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
+ 
+-	pcm942 {
++		/* For GPIO */
+ 		pinctrl_hog: hoggrp {
+ 			fsl,pins = <
+-				IMX8QXP_SAI1_RXC_LSIO_GPIO0_IO30       0x06000021	 /* USBOTG1 Port Select */
+-				IMX8QXP_MCLK_OUT0_ADMA_ACM_MCLK_OUT0   0x0600004c	 /* Audio Clock*/
+-				IMX8QXP_SAI1_RXFS_LSIO_GPIO0_IO31      0x06000021	 /* CAN Fault */
+-				IMX8QXP_SPI0_CS1_LSIO_GPIO1_IO07       0x06000021	 /* ETH1 OR Gate */
++				IMX8QXP_SAI1_RXC_LSIO_GPIO0_IO30       	0x06000021	 /* USBOTG1 Port Select */
++				IMX8QXP_MCLK_OUT0_ADMA_ACM_MCLK_OUT0	0x0600004c	 /* Audio Clock*/
++				IMX8QXP_SAI1_RXFS_LSIO_GPIO0_IO31      	0x06000021	 /* CAN Fault */
++				IMX8QXP_SPI0_CS1_LSIO_GPIO1_IO07       	0x06000021	 /* ETH1 OR Gate */
++				/* GPIO1 */
++				IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09		   		0x26000060 /* Might want to change the last 3 bits to a different Drive select */
++				IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10		   		0x26000060
++				IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12				0x26000060
++				IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13				0x26000060
++				IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14				0x26000060
++				IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17			0x26000060
++				IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18			0x26000060
++				IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19			0x26000060
++				IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20			0x26000060
++				IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25	0x26000060
++				IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26	0x26000060
++				IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29	0x26000060
++				IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30	0x26000060
++
+ 			>;
+-		};
+ 
+ 		pinctrl_leds: leds1grp {
+ 			fsl,pins = <
+@@ -474,7 +519,22 @@ IMX8QXP_UART1_RTS_B_ADMA_UART1_RTS_B     0x06000020
+ 				IMX8QXP_UART1_CTS_B_ADMA_UART1_CTS_B     0x06000020
+ 			>;
+ 		};
+-
++	pinctrl_fec2: fec2grp {
++			fsl,pins = <
++				IMX8QXP_ESAI0_SCKR_CONN_ENET1_RGMII_TX_CTL	   0x06000020
++				IMX8QXP_ESAI0_FSR_CONN_ENET1_RGMII_TXC		   0x06000020
++				IMX8QXP_ESAI0_TX4_RX1_CONN_ENET1_RGMII_TXD0	   0x06000020
++				IMX8QXP_ESAI0_TX5_RX0_CONN_ENET1_RGMII_TXD1	   0x06000020
++				IMX8QXP_ESAI0_FST_CONN_ENET1_RGMII_TXD2		   0x06000020
++				IMX8QXP_ESAI0_SCKT_CONN_ENET1_RGMII_TXD3	   0x06000020
++				IMX8QXP_ESAI0_TX0_CONN_ENET1_RGMII_RXC		   0x06000020
++				IMX8QXP_SPDIF0_TX_CONN_ENET1_RGMII_RX_CTL	   0x06000020
++				IMX8QXP_SPDIF0_RX_CONN_ENET1_RGMII_RXD0		   0x06000020
++				IMX8QXP_ESAI0_TX3_RX2_CONN_ENET1_RGMII_RXD1	   0x06000020
++				IMX8QXP_ESAI0_TX2_RX3_CONN_ENET1_RGMII_RXD2	   0x06000020
++				IMX8QXP_ESAI0_TX1_CONN_ENET1_RGMII_RXD3		   0x06000020
++			>;
++		};
+ 		pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+ 			fsl,pins = <
+ 				IMX8QXP_USDHC1_CD_B_LSIO_GPIO4_IO22	0x06000020
+@@ -508,7 +568,7 @@ pinctrl_usbotg1: usbotg1 {
+ 				IMX8QXP_USB_SS3_TC0_CONN_USB_OTG1_PWR	   0x00000021
+ 			>;
+ 		};
+-
++/*
+ 		pinctrl_i2c0_mipi_lvds0: mipi_lvds0_i2c0_grp {
+ 			fsl,pins = <
+ 				IMX8QXP_MIPI_DSI0_I2C0_SCL_MIPI_DSI0_I2C0_SCL	   0x06000020
+@@ -522,7 +582,7 @@ IMX8QXP_MIPI_DSI1_I2C0_SCL_MIPI_DSI1_I2C0_SCL	   0x06000020
+ 				IMX8QXP_MIPI_DSI1_I2C0_SDA_MIPI_DSI1_I2C0_SDA	   0x06000020
+ 			>;
+ 		};
+-
++*/
+ 		pinctrl_lvds0: lvds0grp {
+ 			fsl,pins = <
+ 				IMX8QXP_MIPI_DSI0_GPIO0_01_LSIO_GPIO1_IO28 0x06000021
+@@ -542,7 +602,7 @@ IMX8QXP_PCIE_CTRL0_CLKREQ_B_LSIO_GPIO4_IO01   0x06000021
+ 				IMX8QXP_PCIE_CTRL0_WAKE_B_LSIO_GPIO4_IO02     0x04000021
+ 			>;
+ 		};
+-
++/*
+ 		pinctrl_sai1: sai1grp {
+ 			fsl,pins = <
+ 				IMX8QXP_FLEXCAN1_TX_ADMA_SAI1_RXD     0x06000040
+@@ -551,16 +611,18 @@ IMX8QXP_FLEXCAN0_TX_ADMA_SAI1_TXFS    0x06000040
+ 				IMX8QXP_FLEXCAN0_RX_ADMA_SAI1_TXC     0x06000040
+ 			>;
+ 		};
+-
++*/
++		/*  SPI 2: Need to add the Chip Select 1 */
+ 		pinctrl_lpspi2: lpspi2grp {
+ 			fsl,pins = <
+ 				IMX8QXP_SPI2_SCK_ADMA_SPI2_SCK          0x600004c
+ 				IMX8QXP_SPI2_SDO_ADMA_SPI2_SDO          0x600004c
+ 				IMX8QXP_SPI2_SDI_ADMA_SPI2_SDI          0x600004c
+ 				IMX8QXP_SPI2_CS0_ADMA_SPI2_CS0          0x600004c
++
+ 			>;
+ 		};
+-
++/*
+ 		pinctrl_lpspi3: lpspi3grp {
+ 			fsl,pins = <
+ 				IMX8QXP_SPI3_SCK_ADMA_SPI3_SCK          0x600004c
+@@ -570,7 +632,7 @@ IMX8QXP_SPI3_CS0_ADMA_SPI3_CS0          0x600004c
+ 				IMX8QXP_SPI3_CS1_ADMA_SPI3_CS1          0x600004c
+ 			>;
+ 		};
+-
++*/
+ 		pinctrl_bt_en: btengpiogrp {
+ 			fsl,pins = <
+ 				IMX8QXP_USDHC1_VSELECT_LSIO_GPIO4_IO20	0x06000021
+@@ -582,5 +644,44 @@ pinctrl_wifi_en: wifiengpiogrp {
+ 				IMX8QXP_USDHC1_RESET_B_LSIO_GPIO4_IO19	0x06000021
+ 			>;
+ 		};
++
++		/* Updated Device Tree */
++
++		/* I2C0 */
++		pinctrl_lpi2c0: lpi0cgrp {
++			fsl,pins = <
++				IMX8QXP_MIPI_CSI0_GPIO0_00_ADMA_I2C0_SCL	0x8000060 
++				IMX8QXP_MIPI_CSI0_GPIO0_01_ADMA_I2C0_SDA	0x8000060
++			>;
++		};
++
++		/* I2C3 */
++		pinctrl_lpi2c3: lpi3cgrp {
++			fsl,pins = <
++				IMX8QXP_SPI3_CS1_ADMA_I2C3_SCL	0x8000060
++				IMX8QXP_MCLK_IN1_ADMA_I2C3_SDA	0x8000060
++			>;
++		};
++/*
++		/* QSPI 0 B  */
++		pinctrl_qspi0b: qspi0bgrp {
++			fsl,pins = <
++				IMX8QXP_QSPI0B_DATA0_LSIO_QSPI0B_DATA0	0x60
++				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA1	0x60
++				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA2	0x60
++				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA3	0x60
++				IMX8QXP_QSPI0B_DQS_LSIO_QSPI0B_DQS		0x60
++				IMX8QXP_QSPI0B_SCLK_LSIO_QSPI0B_SCLK	0x60
++				IMX8QXP_QSPI0B_SS0_B_LSIO_QSPI0B_SS0_B	0x60
++				IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x60
++			>;
++		};
++*/
++		/* WDOG0 */
++		pinctrl_wd0: wd0grp {
++			fsl,pins = <
++				IMX8QXP_SCU_GPIO0_01_SCU_WDOG0_WDOG_OUT 0x20000060
++			>;
++		};
+ 	};
+ };
+-- 
+2.44.1
+

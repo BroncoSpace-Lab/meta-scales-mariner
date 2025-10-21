@@ -1,0 +1,35 @@
+From 9b7ead41ea9ab72b31d499b4ce7061a27c6305e2 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Wed, 1 Oct 2025 18:08:44 +0000
+Subject: [PATCH] removed hog
+
+---
+ arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index fbc66e6fb332..3ffbc5fb7279 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -264,7 +264,8 @@ &lsio_gpio1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_gpio1>;
+ 
+-	
++	/*
++	Removing the hogs and just exposing the pinmux to the node allows for control in runtime	
+ 	gpio1-9-hog {
+ 		gpio-hog;
+ 		gpios = <9 GPIO_ACTIVE_HIGH>; /* <offset flags> */
+@@ -356,7 +357,7 @@ gpio1-30-hog {
+                 line-name = "mariner GPIO1_IO30";
+         };
+ 
+-
++	*/ 
+ };
+ 
+ 
+-- 
+2.44.1
+

@@ -1,0 +1,71 @@
+From 61d1f34fe32b142a3879be8d1d68ee7110da19f3 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Fri, 26 Sep 2025 20:29:07 +0000
+Subject: [PATCH] another edit
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 22 +++++--------------
+ 1 file changed, 5 insertions(+), 17 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index eeff9d909a7b..1a619389b2f3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -305,12 +305,13 @@ &flexcan2 {
+ 	status = "okay";
+ };
+ 
++/*
+ &i2c0_mipi_lvds0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c0_mipi_lvds0>;
+ 	clock-frequency = <100000>;
+ 	status = "disabled";
+-};
++}; 
+ 
+ &i2c0_mipi_lvds1 {
+ 	pinctrl-names = "default";
+@@ -318,6 +319,7 @@ &i2c0_mipi_lvds1 {
+ 	clock-frequency = <100000>;
+ 	status = "disabled";
+ };
++*/
+ 
+ &ldb1_phy {
+ 	status = "disabled";
+@@ -386,6 +388,7 @@ spidev3_0: spi3@0 {
+ 		};
+ 	};
+ */
++
+ &lsio_gpio0{
+ 	usb_port_select-hog {
+ 		gpio-hog;
+@@ -521,22 +524,7 @@ IMX8QXP_UART1_RTS_B_ADMA_UART1_RTS_B     0x06000020
+ 				IMX8QXP_UART1_CTS_B_ADMA_UART1_CTS_B     0x06000020
+ 			>;
+ 		};
+-	/* pinctrl_fec2: fec2grp {
+-			fsl,pins = <
+-				IMX8QXP_ESAI0_SCKR_CONN_ENET1_RGMII_TX_CTL	   0x06000020
+-				IMX8QXP_ESAI0_FSR_CONN_ENET1_RGMII_TXC		   0x06000020
+-				IMX8QXP_ESAI0_TX4_RX1_CONN_ENET1_RGMII_TXD0	   0x06000020
+-				IMX8QXP_ESAI0_TX5_RX0_CONN_ENET1_RGMII_TXD1	   0x06000020
+-				IMX8QXP_ESAI0_FST_CONN_ENET1_RGMII_TXD2		   0x06000020
+-				IMX8QXP_ESAI0_SCKT_CONN_ENET1_RGMII_TXD3	   0x06000020
+-				IMX8QXP_ESAI0_TX0_CONN_ENET1_RGMII_RXC		   0x06000020
+-				IMX8QXP_SPDIF0_TX_CONN_ENET1_RGMII_RX_CTL	   0x06000020
+-				IMX8QXP_SPDIF0_RX_CONN_ENET1_RGMII_RXD0		   0x06000020
+-				IMX8QXP_ESAI0_TX3_RX2_CONN_ENET1_RGMII_RXD1	   0x06000020
+-				IMX8QXP_ESAI0_TX2_RX3_CONN_ENET1_RGMII_RXD2	   0x06000020
+-				IMX8QXP_ESAI0_TX1_CONN_ENET1_RGMII_RXD3		   0x06000020
+-			>;
+-		};	*/
++	
+ 		pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+ 			fsl,pins = <
+ 				IMX8QXP_USDHC1_CD_B_LSIO_GPIO4_IO22	0x06000020
+-- 
+2.44.1
+

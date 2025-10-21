@@ -1,0 +1,109 @@
+From 6eb1cf27e3beccf485d28ae5a00ba34894e45dd9 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 14 Oct 2025 05:08:28 +0000
+Subject: [PATCH] changed to active low GPIOs, fixed qspib
+
+---
+ .../freescale/imx8qxp-scales-mariner-1-b.dts  | 62 ++++++++++---------
+ 1 file changed, 34 insertions(+), 28 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index da24ab65de7f..49d9911cd6a3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -312,6 +312,12 @@ &i2c3 {
+ 	pinctrl-0 = <&pinctrl_lpi2c3>;
+ 	status = "okay";
+ 	};
++	
++	&qspi0 {
++        pinctrl-names = "default";
++        pinctrl-0 = <&pinctrl_qspi0>;
++        status = "okay";
++	};
+ 
+ &iomuxc {
+ 	pinctrl-names = "default";
+@@ -395,51 +401,51 @@ IMX8QXP_SPI2_CS0_ADMA_SPI2_CS0          0x600004c
+ 		// I2C0
+ 		pinctrl_lpi2c0: lpi0cgrp {
+ 			fsl,pins = <
+-				IMX8QXP_MIPI_CSI0_GPIO0_00_ADMA_I2C0_SCL	0x8000060 
+-				IMX8QXP_MIPI_CSI0_GPIO0_01_ADMA_I2C0_SDA	0x8000060
++				IMX8QXP_MIPI_CSI0_GPIO0_00_ADMA_I2C0_SCL	0x06000020 
++				IMX8QXP_MIPI_CSI0_GPIO0_01_ADMA_I2C0_SDA	0x06000020
+ 			>;
+ 		};
+ 
+ 		// I2C3 
+ 		pinctrl_lpi2c3: lpi3cgrp {
+ 			fsl,pins = <
+-				IMX8QXP_SPI3_CS1_ADMA_I2C3_SCL	0x8000060
+-				IMX8QXP_MCLK_IN1_ADMA_I2C3_SDA	0x8000060
++				IMX8QXP_SPI3_CS1_ADMA_I2C3_SCL	0x06000020
++				IMX8QXP_MCLK_IN1_ADMA_I2C3_SDA	0x06000020
+ 			>;
+ 		};
+ 
+-	/*	// QSPI 0 B  
+-		pinctrl_qspi0b: qspi0bgrp {
++		// QSPI 0 B  
++		pinctrl_qspi0: qspi0grp {
+ 			fsl,pins = <
+-				IMX8QXP_QSPI0B_DATA0_LSIO_QSPI0B_DATA0	0x60
+-				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA1	0x60
+-				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA2	0x60
+-				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA3	0x60
+-				IMX8QXP_QSPI0B_DQS_LSIO_QSPI0B_DQS	0x60
+-				IMX8QXP_QSPI0B_SCLK_LSIO_QSPI0B_SCLK	0x60
+-				IMX8QXP_QSPI0B_SS0_B_LSIO_QSPI0B_SS0_B	0x60
+-				IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x60
++				IMX8QXP_QSPI0B_DATA0_LSIO_QSPI0B_DATA0	0x06000021
++				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA1	0x06000021
++				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA2	0x06000021
++				IMX8QXP_QSPI0B_DATA1_LSIO_QSPI0B_DATA3	0x06000021
++				IMX8QXP_QSPI0B_DQS_LSIO_QSPI0B_DQS	0x06000021
++				IMX8QXP_QSPI0B_SCLK_LSIO_QSPI0B_SCLK	0x06000021
++				IMX8QXP_QSPI0B_SS0_B_LSIO_QSPI0B_SS0_B	0x06000021
++				IMX8QXP_QSPI0B_SS1_B_LSIO_QSPI0B_SS1_B	0x06000021
+ 			>;
+ 		};
+ 
+-	*/
++	
+ 
+ 		//GPIO1
+ 		pinctrl_gpio1: gpio1grp {
+                         fsl,pins = <
+-                                IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0x06000021
+-                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x06000021
+-                                IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0x06000021
+-                                IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x06000021
+-                                IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0x06000021
+-                                IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x06000021
+-                                IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x06000021
+-                                IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19             0x06000021
+-                                IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x06000021
+-                                IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0x06000021
+-                                IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0x06000021
+-                                IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0x06000021
+-                                IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x06000021
++                                IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0x06000041 //internal pull down. Active High
++                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x06000041
++                                IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0x06000041
++                                IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x06000041
++                                IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0x06000041
++                                IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x06000041
++                                IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x06000041
++                                IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19             0x06000041
++                                IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x06000041
++                                IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0x06000041
++                                IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0x06000041
++                                IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0x06000041
++                                IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x06000041
+ 				
+                         >;
+                 };
+-- 
+2.44.1
+

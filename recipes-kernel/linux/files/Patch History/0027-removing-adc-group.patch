@@ -1,0 +1,62 @@
+From 30c4633f2b00f7805ffa29b9042a67385500ab74 Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 7 Oct 2025 19:14:47 +0000
+Subject: [PATCH] removing adc group
+
+---
+ .../dts/freescale/imx8qxp-phycore-som-emmc.dtsi   | 15 ---------------
+ .../dts/freescale/imx8qxp-scales-mariner-1-b.dts  |  5 -----
+ 2 files changed, 20 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-phycore-som-emmc.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp-phycore-som-emmc.dtsi
+index 4d0a131cfe6f..706d3f96e5c1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-phycore-som-emmc.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-phycore-som-emmc.dtsi
+@@ -82,13 +82,6 @@ reg_adc_vref_1v8: adc_vref_1v8 {
+ 	};
+ };
+ 
+-&adc0 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_adc0>;
+-	vref-supply = <&reg_adc_vref_1v8>;
+-	status = "okay";
+-};
+-
+ &fec1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_fec1>;
+@@ -200,14 +193,6 @@ map0 {
+ 
+ &iomuxc {
+ 	pcm065 {
+-		pinctrl_adc0: adc0grp {
+-			fsl,pins = <
+-				IMX8QXP_ADC_IN0_ADMA_ADC_IN0				0x60
+-				IMX8QXP_ADC_IN1_ADMA_ADC_IN1				0x60
+-				IMX8QXP_ADC_IN3_ADMA_ADC_IN3				0x60
+-			>;
+-		};
+-
+ 		pinctrl_fec1: fec1grp {
+ 			fsl,pins = <
+ 				IMX8QXP_ENET0_MDC_CONN_ENET0_MDC			0x06000020
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index f40d27c248f2..cbf245dbf56d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -313,11 +313,6 @@ &i2c3 {
+ 	status = "okay";
+ 	};
+ 
+-
+-	&adc0 {
+-	 status = "disabled";
+-	};
+-
+ &iomuxc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_hog>;
+-- 
+2.44.1
+

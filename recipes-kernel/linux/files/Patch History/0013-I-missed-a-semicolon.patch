@@ -1,0 +1,25 @@
+From 04ae9d7084120e465805d537ffa095e89ccd165d Mon Sep 17 00:00:00 2001
+From: Luca Lanzillotta <luquilanzi@gmail.com>
+Date: Tue, 30 Sep 2025 21:05:16 +0000
+Subject: [PATCH] I missed a semicolon
+
+---
+ arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+index 72a73c26ac37..880365e88933 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales-mariner-1-b.dts
+@@ -281,7 +281,7 @@ &i2c3 {
+ 
+ &iomuxc {
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_hog>
++	pinctrl-0 = <&pinctrl_hog>;
+ 
+ 		/* For GPIO */
+ 		pinctrl_hog: hoggrp {
+-- 
+2.44.1
+
