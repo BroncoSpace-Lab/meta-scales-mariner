@@ -1,32 +1,67 @@
-From 90ed93a9538ab7928359e42ce53aa3ddf8e69799 Mon Sep 17 00:00:00 2001
+From 4c56419bbd06a98aa761ba01467d84519d629b05 Mon Sep 17 00:00:00 2001
 From: John Pollak <jmpollak@cpp.edu>
-Date: Fri, 7 Nov 2025 21:07:39 +0000
-Subject: [PATCH] SCALES version 1 DTS
+Date: Wed, 26 Nov 2025 02:01:25 +0000
+Subject: [PATCH] SCALES device tree
 
 ---
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx8qxp-scales.dts     | 448 ++++++++++++++++++
- 2 files changed, 449 insertions(+)
+ arch/arm64/boot/dts/freescale/Makefile        |   2 +-
+ .../freescale/imx8qxp-phycore-som-emmc.dtsi   |  15 -
+ .../boot/dts/freescale/imx8qxp-scales.dts     | 444 ++++++++++++++++++
+ 3 files changed, 445 insertions(+), 16 deletions(-)
  create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-scales.dts
 
 diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 3173ff122edc..92231e08ec20 100644
+index 3173ff122edc..33daa9d6f04c 100644
 --- a/arch/arm64/boot/dts/freescale/Makefile
 +++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -538,6 +538,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek-dom0.dtb imx8qxp-mek-root.dtb \
+@@ -537,7 +537,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb imx8qxp-mek-ov5640.dtb \
+ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek-dom0.dtb imx8qxp-mek-root.dtb \
  			  imx8qxp-mek-inmate.dtb
  
- 
+-
 +dtb-$(CONFIG_ARCH_MXC) += imx8qxp-scales.dtb
  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-phytec-pcm-942.dtb
  
  imx8qxp-phytec-pcm-942-bt-dtbs := imx8qxp-phytec-pcm-942.dtb imx8qxp-phytec-pcm-942-bt.dtbo
+diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-phycore-som-emmc.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp-phycore-som-emmc.dtsi
+index 4d0a131cfe6f..706d3f96e5c1 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qxp-phycore-som-emmc.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qxp-phycore-som-emmc.dtsi
+@@ -82,13 +82,6 @@ reg_adc_vref_1v8: adc_vref_1v8 {
+ 	};
+ };
+ 
+-&adc0 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_adc0>;
+-	vref-supply = <&reg_adc_vref_1v8>;
+-	status = "okay";
+-};
+-
+ &fec1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_fec1>;
+@@ -200,14 +193,6 @@ map0 {
+ 
+ &iomuxc {
+ 	pcm065 {
+-		pinctrl_adc0: adc0grp {
+-			fsl,pins = <
+-				IMX8QXP_ADC_IN0_ADMA_ADC_IN0				0x60
+-				IMX8QXP_ADC_IN1_ADMA_ADC_IN1				0x60
+-				IMX8QXP_ADC_IN3_ADMA_ADC_IN3				0x60
+-			>;
+-		};
+-
+ 		pinctrl_fec1: fec1grp {
+ 			fsl,pins = <
+ 				IMX8QXP_ENET0_MDC_CONN_ENET0_MDC			0x06000020
 diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-scales.dts b/arch/arm64/boot/dts/freescale/imx8qxp-scales.dts
 new file mode 100644
-index 000000000000..785e0124faff
+index 000000000000..86ba6c12408b
 --- /dev/null
 +++ b/arch/arm64/boot/dts/freescale/imx8qxp-scales.dts
-@@ -0,0 +1,448 @@
+@@ -0,0 +1,444 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +/*
 + * Copyright (C) 2018 PHYTEC Messtechnik GmbH
@@ -71,11 +106,10 @@ index 000000000000..785e0124faff
 +		regulator-min-microvolt = <3300000>;
 +		regulator-max-microvolt = <3300000>;
 +		regulator-always-on;
-+		};
-+
 +	};
-+	
-+	&i2c1 {
++};
++
++&i2c1 {
 +	#address-cells = <1>;
 +	#size-cells = <0>;
 +	clock-frequency = <100000>;
@@ -131,81 +165,81 @@ index 000000000000..785e0124faff
 +};
 +
 +
-+	&lpuart0 {
++&lpuart0 {
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_lpuart0>;
 +	status = "okay";
-+	};
++};
 +
-+	&dc0_prg1 {
++&dc0_prg1 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_prg2 {
++&dc0_prg2 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_prg3 {
++&dc0_prg3 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_prg4 {
++&dc0_prg4 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_prg5 {
++&dc0_prg5 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_prg6 {
++&dc0_prg6 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_prg7 {
++&dc0_prg7 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_prg8 {
++&dc0_prg8 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_prg9 {
++&dc0_prg9 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_dpr1_channel1 {
++&dc0_dpr1_channel1 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_dpr1_channel2 {
++&dc0_dpr1_channel2 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_dpr1_channel3 {
++&dc0_dpr1_channel3 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_dpr2_channel1 {
++&dc0_dpr2_channel1 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_dpr2_channel2 {
++&dc0_dpr2_channel2 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_dpr2_channel3 {
++&dc0_dpr2_channel3 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dpu1 {
++&dpu1 {
 +	status = "disabled";
-+	};
++};
 +
-+	&usbphy1 {
++&usbphy1 {
 +	status = "okay";
-+	};
++};
 +
-+	&usdhc2 {
++&usdhc2 {
 +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
 +	pinctrl-0 = <&pinctrl_usdhc2_sd>, <&pinctrl_usdhc2_gpio>;
 +	pinctrl-1 = <&pinctrl_usdhc2_sd>, <&pinctrl_usdhc2_gpio>;
@@ -213,13 +247,13 @@ index 000000000000..785e0124faff
 +	bus-width = <4>;
 +	no-1-8-v;
 +	no-uhs;
-+        no-sd-highspeed;             
-+        max-frequency = <25000000>; 
++	no-sd-highspeed;             
++	max-frequency = <25000000>; 
 +	cd-gpios = <&lsio_gpio4 22 GPIO_ACTIVE_LOW>;
 +	status = "okay";
-+	};
++};
 +
-+	&fec2 {
++&fec2 {
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_fec2>;
 +	phy-mode = "rgmii-id";
@@ -228,9 +262,9 @@ index 000000000000..785e0124faff
 +	nvmem-cells = <&fec_mac1>;
 +	nvmem-cell-names = "mac-address";
 +	status = "okay";
-+	};
++};
 +
-+	&mdio {
++&mdio {
 +	ethphy1: ethernet-phy@3 {
 +		compatible = "ethernet-phy-ieee802.3-c22";
 +		reg = <3>;
@@ -240,37 +274,37 @@ index 000000000000..785e0124faff
 +		ti,led-0-active-low;
 +		ti,led-2-active-low;
 +		enet-phy-lane-no-swap;
-+		};
 +	};
++};
 +
 +
-+	&ldb1_phy {
++&ldb1_phy {
 +	status = "disabled";
-+	};
++};
 +
-+	&ldb2_phy {
++&ldb2_phy {
 +	status = "disabled";
-+	};
++};
 +
-+	&ldb1 {
++&ldb1 {
 +	status = "disabled";
-+	};
++};
 +
-+	&ldb2 {
++&ldb2 {
 +	status = "disabled";
-+	};
++};
 +
-+	&dc0_pc {
++&dc0_pc {
 +	status = "disabled";
-+	};
++};
 +
-+	&phyx1 {
++&phyx1 {
 +	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
 +	status = "okay";
-+	};
++};
 +
 +
-+	&lpspi2 {
++&lpspi2 {
 +	fsl,spi-num-chipselects = <1>;
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_lpspi2>;
@@ -280,78 +314,77 @@ index 000000000000..785e0124faff
 +		reg = <0>;
 +		compatible = "rohm,dh2228fv";
 +		spi-max-frequency = <10000000>;
-+		};
 +	};
++};
 +
-+	&lsio_gpio0{
++&lsio_gpio0{
 +	usb_port_select-hog {
 +		gpio-hog;
 +		gpios = <30 GPIO_ACTIVE_HIGH>;
 +		output-low;
 +		line-name = "USB port select GPIO";
-+		};
 +	};
++};
 +
-+	&lsio_gpio1 {
++&lsio_gpio1 {
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_gpio1>;
 +	
 +	gpio-line-names =
-+        /* 0-7 */
-+        "", "", "", "", "", "", "", "",
-+        /* 8 */
-+        "",
-+        /* 9-10: named */
-+        "mariner_gpio09", "mariner_gpio10",
-+        /* 11 */
-+        "",
-+        /* 12-14: named */
-+        "mariner_gpio12", "mariner_gpio13", "mariner_gpio14",
-+        /* 15-16 */
-+        "", "",
-+        /* 17: named */
-+        "mariner_gpio17",
-+        /* 18-20 (you muxed them too, but didn’t list as hogs — still usable) */
-+        "mariner_gpio18", "mariner_gpio19", "mariner_gpio20",
-+        /* 21-24 */
-+        "", "", "", "",
-+        /* 25-26: */
-+        "mariner_gpio25", "mariner_gpio26",
-+        /* 27-28 */
-+        "", "",
-+        /* 29-30: */
-+        "mariner_gpio29", "mariner_gpio30",
-+        /* 31 */
-+        "";
-+
-+	};	
-+
++		/* 0-7 */
++		"", "", "", "", "", "", "", "",
++		/* 8 */
++		"",
++		/* 9-10: named */
++		"mariner_gpio09", "mariner_gpio10",
++		/* 11 */
++		"",
++		/* 12-14: named */
++		"mariner_gpio12", "mariner_gpio13", "mariner_gpio14",
++		/* 15-16 */
++		"", "",
++		/* 17: named */
++		"mariner_gpio17",
++		/* 18-20 (you muxed them too, but didn't list as hogs — still usable) */
++		"mariner_gpio18", "mariner_gpio19", "mariner_gpio20",
++		/* 21-24 */
++		"", "", "", "",
++		/* 25-26: */
++		"mariner_gpio25", "mariner_gpio26",
++		/* 27-28 */
++		"", "",
++		/* 29-30: */
++		"mariner_gpio29", "mariner_gpio30",
++		/* 31 */
++		"";
++};	
 +
 +
-+	/* New Added pins */
-+	&i2c0 {
++
++/* New Added pins */
++&i2c0 {
 +	#address-cells = <1>;
 +	#size-cells = <0>;
 +	clock-frequency = <100000>;
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_lpi2c0>;
 +	status = "okay";
-+	};
++};
 +
-+	&i2c3 {
++&i2c3 {
 +	#address-cells = <1>;
 +	#size-cells = <0>;
 +	clock-frequency = <100000>;
 +	pinctrl-names = "default";
 +	pinctrl-0 = <&pinctrl_lpi2c3>;
 +	status = "okay";
-+	};
-+	
-+	&lpuart2 {
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_lpuart2>;
-+        status = "okay";
-+        };
++};
++
++&lpuart2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_lpuart2>;
++	status = "okay";
++};
 +
 +&iomuxc {
 +	pinctrl-names = "default";
@@ -362,12 +395,12 @@ index 000000000000..785e0124faff
 +		/* For GPIO */
 +		pinctrl_hog: hoggrp {
 +			fsl,pins = <
-+				IMX8QXP_SPI0_CS1_LSIO_GPIO1_IO07       	0x06000021
++				IMX8QXP_SPI0_CS1_LSIO_GPIO1_IO07	0x06000021
 +			>;
 +		};	
 +		pinctrl_i2crtc: i2crtcgrp {
 +			fsl,pins = <
-+				IMX8QXP_SAI0_TXD_LSIO_GPIO0_IO25        0x06000021
++				IMX8QXP_SAI0_TXD_LSIO_GPIO0_IO25	0x06000021
 +			>;
 +		};
 +
@@ -380,18 +413,18 @@ index 000000000000..785e0124faff
 +
 +		pinctrl_fec2: fec2grp {
 +			fsl,pins = <
-+				IMX8QXP_ESAI0_SCKR_CONN_ENET1_RGMII_TX_CTL	   0x06000020
-+				IMX8QXP_ESAI0_FSR_CONN_ENET1_RGMII_TXC		   0x06000020
-+				IMX8QXP_ESAI0_TX4_RX1_CONN_ENET1_RGMII_TXD0	   0x06000020
-+				IMX8QXP_ESAI0_TX5_RX0_CONN_ENET1_RGMII_TXD1	   0x06000020
-+				IMX8QXP_ESAI0_FST_CONN_ENET1_RGMII_TXD2		   0x06000020
-+				IMX8QXP_ESAI0_SCKT_CONN_ENET1_RGMII_TXD3	   0x06000020
-+				IMX8QXP_ESAI0_TX0_CONN_ENET1_RGMII_RXC		   0x06000020
-+				IMX8QXP_SPDIF0_TX_CONN_ENET1_RGMII_RX_CTL	   0x06000020
-+				IMX8QXP_SPDIF0_RX_CONN_ENET1_RGMII_RXD0		   0x06000020
-+				IMX8QXP_ESAI0_TX3_RX2_CONN_ENET1_RGMII_RXD1	   0x06000020
-+				IMX8QXP_ESAI0_TX2_RX3_CONN_ENET1_RGMII_RXD2	   0x06000020
-+				IMX8QXP_ESAI0_TX1_CONN_ENET1_RGMII_RXD3		   0x06000020
++				IMX8QXP_ESAI0_SCKR_CONN_ENET1_RGMII_TX_CTL	0x06000020
++				IMX8QXP_ESAI0_FSR_CONN_ENET1_RGMII_TXC		0x06000020
++				IMX8QXP_ESAI0_TX4_RX1_CONN_ENET1_RGMII_TXD0	0x06000020
++				IMX8QXP_ESAI0_TX5_RX0_CONN_ENET1_RGMII_TXD1	0x06000020
++				IMX8QXP_ESAI0_FST_CONN_ENET1_RGMII_TXD2		0x06000020
++				IMX8QXP_ESAI0_SCKT_CONN_ENET1_RGMII_TXD3	0x06000020
++				IMX8QXP_ESAI0_TX0_CONN_ENET1_RGMII_RXC		0x06000020
++				IMX8QXP_SPDIF0_TX_CONN_ENET1_RGMII_RX_CTL	0x06000020
++				IMX8QXP_SPDIF0_RX_CONN_ENET1_RGMII_RXD0		0x06000020
++				IMX8QXP_ESAI0_TX3_RX2_CONN_ENET1_RGMII_RXD1	0x06000020
++				IMX8QXP_ESAI0_TX2_RX3_CONN_ENET1_RGMII_RXD2	0x06000020
++				IMX8QXP_ESAI0_TX1_CONN_ENET1_RGMII_RXD3		0x06000020
 +			>;
 +		};
 +
@@ -402,13 +435,13 @@ index 000000000000..785e0124faff
 +			>;
 +		};
 +		
-+		pinctrl_lpuart2: lpuart2grp{
-+			fsl,pin = <
-+				IMX8QXP_UART2_TX_ADMA_UART2_TX 0x0600002c
-+				IMX8QXP_UART2_RX_ADMA_UART2_RX 0x0600002c
-+		
++		pinctrl_lpuart2: lpuart2grp {
++			fsl,pins = <
++				IMX8QXP_UART2_TX_ADMA_UART2_TX	0x0600002c
++				IMX8QXP_UART2_RX_ADMA_UART2_RX	0x0600002c
 +			>;
 +		};
++
 +		pinctrl_usdhc2_gpio: usdhc2gpiogrp {
 +			fsl,pins = <
 +				IMX8QXP_USDHC1_CD_B_LSIO_GPIO4_IO22	0x06000020
@@ -422,17 +455,16 @@ index 000000000000..785e0124faff
 +				IMX8QXP_USDHC1_DATA0_CONN_USDHC1_DATA0	0x06000060
 +				IMX8QXP_USDHC1_DATA1_CONN_USDHC1_DATA1	0x06000060
 +				IMX8QXP_USDHC1_DATA2_CONN_USDHC1_DATA2	0x06000060
-+				IMX8QXP_USDHC1_DATA3i.MX8 Processor Reference Manual (pg. 680)_CONN_USDHC1_DATA3	0x06000060
++				IMX8QXP_USDHC1_DATA3_CONN_USDHC1_DATA3	0x06000060
 +			>;
 +		};
 + 
 +		pinctrl_lpspi2: lpspi2grp {
 +			fsl,pins = <
-+				IMX8QXP_SPI2_SCK_ADMA_SPI2_SCK          0x600004c
-+				IMX8QXP_SPI2_SDO_ADMA_SPI2_SDO          0x600004c
-+				IMX8QXP_SPI2_SDI_ADMA_SPI2_SDI          0x600004c
-+				IMX8QXP_SPI2_CS0_ADMA_SPI2_CS0          0x600004c
-+
++				IMX8QXP_SPI2_SCK_ADMA_SPI2_SCK	0x600004c
++				IMX8QXP_SPI2_SDO_ADMA_SPI2_SDO	0x600004c
++				IMX8QXP_SPI2_SDI_ADMA_SPI2_SDI	0x600004c
++				IMX8QXP_SPI2_CS0_ADMA_SPI2_CS0	0x600004c
 +			>;
 +		};
 +
@@ -456,23 +488,22 @@ index 000000000000..785e0124faff
 +
 +		//GPIO1
 +		pinctrl_gpio1: gpio1grp {
-+                        fsl,pins = <
-+                                IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09                 0x06000041 //internal pull down. Active High
-+                                IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10                 0x06000041
-+                                IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12                 0x06000041
-+                                IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13                 0x06000041
-+                                IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14                 0x06000041
-+                                IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17             0x06000041
-+                                IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18             0x06000041
-+                                IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19             0x06000041
-+                                IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20             0x06000041
-+                                IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25      0x06000041
-+                                IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26      0x06000041
-+                                IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29      0x06000041
-+                                IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30      0x06000041
-+				
-+                        >;
-+                };
++			fsl,pins = <
++				IMX8QXP_ADC_IN1_LSIO_GPIO1_IO09			0x06000041
++				IMX8QXP_ADC_IN0_LSIO_GPIO1_IO10			0x06000041
++				IMX8QXP_ADC_IN2_LSIO_GPIO1_IO12			0x06000041
++				IMX8QXP_ADC_IN5_LSIO_GPIO1_IO13			0x06000041
++				IMX8QXP_ADC_IN4_LSIO_GPIO1_IO14			0x06000041
++				IMX8QXP_FLEXCAN1_RX_LSIO_GPIO1_IO17		0x06000041
++				IMX8QXP_FLEXCAN1_TX_LSIO_GPIO1_IO18		0x06000041
++				IMX8QXP_FLEXCAN2_RX_LSIO_GPIO1_IO19		0x06000041
++				IMX8QXP_FLEXCAN2_TX_LSIO_GPIO1_IO20		0x06000041
++				IMX8QXP_MIPI_DSI0_I2C0_SCL_LSIO_GPIO1_IO25	0x06000041
++				IMX8QXP_MIPI_DSI0_I2C0_SDA_LSIO_GPIO1_IO26	0x06000041
++				IMX8QXP_MIPI_DSI1_I2C0_SCL_LSIO_GPIO1_IO29	0x06000041
++				IMX8QXP_MIPI_DSI1_I2C0_SDA_LSIO_GPIO1_IO30	0x06000041
++			>;
++		};
 +	};
 +};
 -- 

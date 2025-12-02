@@ -1,41 +1,6 @@
-This README file contains information on the contents of the meta-scales-mariner layer.
+This layer is for the custom Hardware for the SCALES system and uses a minimal configuration of the Phytec i.MX 8X SOM.
 
-Please see the corresponding sections below for details.
+This layer was created by following the following [BRONCO SPACE NOTION](https://broncospace.notion.site/Creating-a-Custom-Yocto-BSP-28cca1dca64c8002a145c9d9d180d923) guide created by John Pollak with help from Phytec Support members Garrett Giordano and True Loan. 
+This guide is a comprehensive version of the working process that John Pollak and Luca Lanzillotta did to achieve a stable and working Yocto Linux image.
 
-Dependencies
-============
-
-  URI: <first dependency>
-  branch: <branch name>
-
-  URI: <second dependency>
-  branch: <branch name>
-
-  .
-  .
-  .
-
-Patches
-=======
-
-Please submit any patches against the meta-scales-mariner layer to the xxxx mailing list (xxxx@zzzz.org)
-and cc: the maintainer:
-
-Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
-
-Table of Contents
-=================
-
-  I. Adding the meta-scales-mariner layer to your build
- II. Misc
-
-
-I. Adding the meta-scales-mariner layer to your build
-=================================================
-
-Run 'bitbake-layers add-layer meta-scales-mariner'
-
-II. Misc
-========
-
---- replace with specific information about the meta-scales-mariner layer ---
+For more information on the SCALES project please visit our [SCALES Documentation Site.](https://scales-docs.readthedocs.io/en/latest/)
