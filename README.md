@@ -1,19 +1,22 @@
 # Phytec BSP modifications to support the SCALES Mariner Custom Carrier Board
+
 ### What does this do?
+
 This meta-layer for the phytec imx8qxp BSP adds support for GPIOs, Serial, I2C, and SPI for the SCALES IMX carrier boards.
 A few files on the base Phytec BSP have been modified to reflect necessary changes for functionalities we would like to be exposed on the custom board.
 On this board we have exposed I2C0 (Hot swappable), I2C3 (Exposed), SPI2, UART2, FTDI over USB, and a heap of GPIOs at 3.3V and 1.8V logic levels, all of these
 are available for the end user to program through the linux environment at their wish using either C, bash, or Python.
 
-Documentation Available Here:
-https://broncospace.notion.site/i-MX-8X-1aeca1dca64c80cc9ec3c6f4a383c55a
+Documentation Available [Here](https://scales-docs.readthedocs.io/en/latest/imx_yocto_bsp/)!
 
 ### Included Changes
+
 Custom Device tree file -> imx8qxp-scales-mariner-1b.dts
 Modified som dtsi to exclude ADC -> imx8qxp-phycore-som-emmc.dtsi
 Modified Makefile to compile custom dts -> Makefile
 
 ### Included Packages
+
 Watchdog scripts to pin Power Board Watchdog
 Jetson toggle scripts to sequence the Jetson subsystem
 Peripheral toggle scripts to sequence the Peripheral subsystem
